@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/lakshmi2812/project_github_commit_feed#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "github": "^12.0.2"
   },

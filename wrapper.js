@@ -11,11 +11,7 @@ var github = new Github({
 
 github.authenticate({
 	type: 'token',
-<<<<<<< HEAD
-	token: process.env.GITHUB_API_TOKEN
-=======
 	token: GITHUB_API_TOKEN
->>>>>>> f20a4fca9675561ca09bc7acd533bad832de2763
 });
 
 //change the token after pulling

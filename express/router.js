@@ -1,6 +1,8 @@
 var url = require('url');
 var matchURLToPath = require('./pathmatcher');
 var parseParams = require('./parseParams');
+var bodyParser = require('body-parser')
+
 
 var Router = {};
 
@@ -21,9 +23,15 @@ Router.handle = (req, res) => {
 
 	let body = '';
 	req.on('data', data => {
-		//console.log('heres the data in req.on: ' + data);
 		body += data;
+    //console.log('heres the data in req.on: ' + body);
+    //bodyParser.json()
 	});
+
+  req.on('end', () => {
+    //console.log(body);
+    console.log(JSON.parse(decodeURI(body)));
+  })
 	// req.on('end', () => {
 	// 	req.body = body;
 	// 	console.log('req.body is ' + req.body);
