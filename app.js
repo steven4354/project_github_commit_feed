@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 var express = require('./express/express.js');
 var fs = require('fs');
 let data = require('./data/commits');
@@ -16,7 +18,7 @@ app.get('/', (req, res) => {
 		'Content-Type': 'text/html'
 	});
 	fs.readFile('./public/index.html', function(err, content) {
-		let contentString = content.toString();
+		let contentString = content.toString('utf8');
 		let newString = contentString //.replace('{{ commit Feed }}', dataString);
 
 		res.write(newString);
@@ -37,9 +39,9 @@ app.get('/commits', (req, res) => {
 		});
 		fs.readFile('./public/index.html', function(err, content) {
 			let contentString = content.toString('utf8');
-			origvar = '{{ commit Feed }}'
+			var origvar = '{{ commit Feed }}'
 			let newString = contentString.replace(origvar, JSON.stringify(result.data, null, 2));
-			origvar = JSON.stringify(result.data, null, 2)
+			var origvar = JSON.stringify(result.data, null, 2)
 			res.write(newString);
 		});
 	})
