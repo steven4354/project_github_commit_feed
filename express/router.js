@@ -21,7 +21,7 @@ Router.handle = (req, res) => {
 
 	let body = '';
 	req.on('data', data => {
-		console.log('heres the data in req.on: ' + data);
+		//console.log('heres the data in req.on: ' + data);
 		body += data;
 	});
 	// req.on('end', () => {
