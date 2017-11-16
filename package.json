@@ -18,5 +18,6 @@
   "homepage": "https://github.com/lakshmi2812/project_github_commit_feed#readme",
   "dependencies": {
     "github": "^12.0.2"
-  }
+  },
+  "devDependencies": {}
 }
