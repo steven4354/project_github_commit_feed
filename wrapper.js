@@ -1,4 +1,5 @@
 var Github = require('github');
+var env = require('dotenv').config();
 
 let GITHUB_API_TOKEN = process.env.GITHUB_API_TOKEN;
 
@@ -8,7 +9,7 @@ var github = new Github({
 
 github.authenticate({
 	type: 'token',
-	token: '505434708df0084a22beaf880682213f126e0c66'
+	token: GITHUB_API_TOKEN
 });
 
 //change the token after pulling
@@ -29,7 +30,7 @@ var getcommitsObj = (ownername, reponame) => {
 				//console.log('this is the err: ' + err);
 				reject(err);
 			});
-	})
+	});
 };
 
 module.exports = getcommitsObj;

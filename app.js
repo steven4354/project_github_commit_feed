@@ -2,7 +2,7 @@ var express = require('./express/express.js');
 var fs = require('fs');
 let data = require('./data/commits');
 const url = require('url');
-const getcommitsObj = require('./wrapper.js')
+const getcommitsObj = require('./wrapper.js');
 
 //let dataString = JSON.stringify(data, null, 2);
 
@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 	});
 	fs.readFile('./public/index.html', function(err, content) {
 		let contentString = content.toString();
-		let newString = contentString //.replace('{{ commit Feed }}', dataString);
+		let newString = contentString; //.replace('{{ commit Feed }}', dataString);
 
 		res.write(newString);
 	});
@@ -26,10 +26,10 @@ app.get('/', (req, res) => {
 
 app.get('/commits', (req, res) => {
 	let _url = url.parse(req.url).pathname;
-	let query = url.parse(req.url).query
-	let queryarray = query.split('&') //["user=,,,", "repo=,,,"]
-	let user = queryarray[0].split("=")[1]
-	let repo = queryarray[1].split("=")[1]
+	let query = url.parse(req.url).query;
+	let queryarray = query.split('&'); //["user=,,,", "repo=,,,"]
+	let user = queryarray[0].split('=')[1];
+	let repo = queryarray[1].split('=')[1];
 
 	getcommitsObj(user, repo).then(result => {
 		res.writeHead(200, {
@@ -37,12 +37,15 @@ app.get('/commits', (req, res) => {
 		});
 		fs.readFile('./public/index.html', function(err, content) {
 			let contentString = content.toString('utf8');
-			origvar = '{{ commit Feed }}'
-			let newString = contentString.replace(origvar, JSON.stringify(result.data, null, 2));
-			origvar = JSON.stringify(result.data, null, 2)
+			origvar = '{{ commit Feed }}';
+			let newString = contentString.replace(
+				origvar,
+				JSON.stringify(result.data, null, 2)
+			);
+			origvar = JSON.stringify(result.data, null, 2);
 			res.write(newString);
 		});
-	})
+	});
 
 	/*
 	res.writeHead(200, {
