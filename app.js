@@ -1,6 +1,7 @@
 var express = require('./express/express.js');
 var fs = require('fs');
 let data = require('./data/commits');
+const url = require('url');
 
 let dataString = JSON.stringify(data, null, 2);
 
@@ -18,10 +19,24 @@ app.get('/', (req, res) => {
 	fs.readFile('./public/index.html', function(err, content) {
 		let contentString = content.toString('utf8');
 		let newString = contentString.replace('{{ commit Feed }}', dataString);
-		console.log(newString);
+		//console.log(newString);
 		res.write(newString);
 	});
 	//res.end('get method was fired');
+});
+
+app.get('/commits', (req, res) => {
+	let _url = url.parse(req.url).pathname;
+	console.log('Path name: ', _url);
+	res.writeHead(200, {
+		'Content-Type': 'text/html'
+	});
+	fs.readFile('./public/commits.html', function(err, content) {
+		let contentString = content.toString('utf8');
+		//let newString = contentString.replace('{{ commit Feed }}', dataString);
+		console.log(contentString);
+		res.write(contentString);
+	});
 });
 
 app.get('/foo/:bar', (req, res) => {
