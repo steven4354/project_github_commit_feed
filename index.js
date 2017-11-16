@@ -1,3 +1,3 @@
-var getcommitsObj = require('./wrapper.js')
+var getcommitsObj = require('./wrapper.js');
 
-getcommitsObj('')
+getcommitsObj('lakshmi2812', 'head_first_js');
